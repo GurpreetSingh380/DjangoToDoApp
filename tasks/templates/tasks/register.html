@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Register{% endblock %}</title>
+    <style>
+        body{
+            background-color: antiquewhite;
+        }
+        .outer{
+            height: 350px;
+            width: 300px;
+            background-color: hsl(180, 38%, 39%);
+            border-radius: 30px;
+            border: groove #d1d8db;
+            margin: 130px auto auto;
+        }
+        form{
+            position: relative;
+            color: aliceblue;
+            margin: 45px;
+        }
+        .inner{
+            margin: 10px;
+            margin-left: 14px;
+            font-size: medium;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: white;
+        }
+        a{
+            text-decoration: none;
+            color: hsl(0, 20%, 81%);
+            font-size: medium;
+            font-family: sans-serif;
+            float: right;
+        }
+        span{
+            font-size: small;
+            float: right;
+            margin-top: 15px;
+        }
+        input[type=submit]{
+            background-color: #515d68;
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <form action="" method="post">
+            {% csrf_token %}
+            <!-- {% for field in form %}
+                <div class="inner">
+                    {{field.label}}
+                    {{field}}
+                </div> 
+            {% endfor %}  -->
+            {% block fields %}
+                <div class="inner">
+                    {{form.username.label}}
+                    {{form.username}}
+                </div> 
+                <div class="inner">
+                    {{form.email.label}}
+                    {{form.email}}
+                </div> 
+                <div class="inner">
+                    {{form.password1.label}}
+                    {{form.password1}}
+                </div> 
+                <div class="inner">
+                    {{form.password2.label}}
+                    {{form.password2}}
+                </div> 
+            {% endblock %}
+            <input type="submit" name="createUser" value={% block btn %}"Register"{% endblock %} class="inner">
+            <span>{% block infolink %}Created Account?{% endblock %}</span> {% block page %}<a href="{% url 'login' %}">{% endblock %}{% block linkname %}Sign in{% endblock %}</a>
+        </form>
+        {% for message in messages %} 
+            <p class="inner">{{message}}</p>   
+            <!-- msg shown at login page as it is extended! -->
+        {% endfor %}
+    </div>
+</body>
+</html>

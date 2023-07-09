@@ -1,0 +1,52 @@
+<style>
+    .navout{
+        background-color: #693c3c8c;
+        width: 100vw;
+        color: aliceblue;
+        display: flex;
+        justify-content: space-between;
+    }
+    .in{
+        margin: 10px;
+    }
+    .text{
+        font-size: large;
+        font-weight: 700;
+        background-color: hwb(33 51% 31%);
+        border: inset whitesmoke;
+        height: 40px;
+        width: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        color: hsl(0, 11%, 26%);
+        cursor: pointer;
+    }
+    .hello-msg, .log-out{
+        display: inline-block;
+        font-size: large;
+        padding: 7px;
+        margin: 5px 20px;
+        background-color: antiquewhite;
+        color: black;
+        font-size: x-large;
+        border-radius: 10px;
+        cursor: grab;
+    }
+    .hello-msg{
+        background-color: beige;
+        font-family:'Brush Script MT';
+    }
+    a{
+        text-decoration: none;
+        font-size: large;
+    }
+</style>
+<div class="navout">
+    <div class="text in" >TO-DO</div>
+    <div class="right in">
+        <div class="hello-msg">Hello, {{request.user}}</div>
+        <div class="log-out"><a href="{% url 'logoutUser' %}">Logout</a></div>
+    </div>
+</div>

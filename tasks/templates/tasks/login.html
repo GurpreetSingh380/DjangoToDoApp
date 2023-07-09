@@ -1,0 +1,18 @@
+{% extends 'tasks/register.html' %}
+{% block title %} Login {% endblock %}
+{% block fields %}
+    <style>
+        input[type=text]{
+            color:#0a6965;
+        }
+    </style>
+    <label for="username" class="inner">Username</label>
+    <input type="text" name="username" id="username", class="inner">
+    <label for="password" class="inner">Password</label>
+    <input type="text" name="password" id="password", class="inner">
+{% endblock %}
+{% block btn %}Login{% endblock %}
+{% block infolink %}Wanna register?{% endblock %}
+{% block page %}<a href="{% url 'register' %}">{% endblock %}
+{% block linkname %}Register{% endblock %}
+

@@ -1,0 +1,44 @@
+{% extends 'tasks/index.html' %}
+{%block title%}Update{%endblock%}
+
+{% block heading %}
+<style>
+    body{
+        background-image: url('static/tasks/images/tdl.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        /* background-color: coral; */
+    }
+    .notice{
+        background-color: hsl(46, 54%, 84%);
+        padding: 20px;
+        width: 50%;
+        margin: auto;
+        border-radius: 30px;
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    p{
+        font-size: 20px;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        color: hsla(53, 78%, 18%, 0.475);
+    }
+</style>
+    <div class="notice">
+        <p>Please type the required change</p>
+    </div>
+{% endblock %}
+{% block complete %} 
+<style>
+    #id_complete{
+        height: 20px;
+        width: 20px;
+    }
+</style>
+    {{form.complete}}
+{% endblock %}
+{%block valueTitle%} Change {%endblock%}
+{% block outer %}{% endblock %}
+
+

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}HomePage{% endblock %}</title>
+    
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        body {
+            background-image: url('static/tasks/images/tdl.png'); 
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100vw;
+            min-height: 100vh;
+        }
+        .outer{
+            background: rgb(236, 236, 187);
+            width: 45%;
+            height: 500px;
+            margin: auto;
+            margin-top: 20px;
+            border-radius: 35px;
+            box-shadow: 7px 7px #524a4a;
+            overflow: auto;
+        }
+        form{
+            left:103px;
+            top:30px;
+            background-color: hsla(338, 10%, 16%, 0.761);
+            height: 45px;
+            width: 480px;
+            border-radius: 30px;
+            margin: auto;
+            margin-top: 20px;
+            padding: 5px 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .outer::-webkit-scrollbar{
+            display: none;
+        }
+        
+        form *{
+            color: hsl(0, 11%, 87%);
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: large;
+        }
+        .listwali{
+            position: relative;
+            top: 90px;
+            left: 30px;
+            width: 200px;
+        }
+        ul{
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        ul li{
+            border-radius: 30px;
+            background-color: hsla(180, 19%, 79%, 0.39);
+            margin-top: 10px;
+            width: max(200px, calc(100% - 100px));
+            padding: 5px;
+            border: groove rgb(201, 201, 223);
+            overflow-x: auto;
+        }
+        ul li p{
+            margin: 2px;
+            margin-left: 20px;
+            display: inline-block;
+            color:hwb(0 10% 65% / 0.705);
+            font-size: large;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        ul li a{
+            text-decoration: none;
+            color: #292626;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+            margin: 5px;
+            float: right;
+        }
+        input[type=submit]{
+            background-color: hwb(0 9% 66% / 0.761);
+            border: none;
+            color: hwb(36 36% 23%);
+            padding: 3px 6px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 3px;
+            border: groove hsl(0, 2%, 59%);
+        }
+        input[type=text]{
+            background-color: rgba(161, 163, 138, 0.226);
+            border: ridge white;
+            padding: 3px 6px;
+            text-decoration: none;
+            margin: 4px 2px;
+            /* border-radius: 15px; */
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+            width: calc(100% - 40px);
+        }
+        #id_title{
+            color: rgb(223, 212, 212);
+        }
+        .titlelbl{
+            color:aliceblue;
+            font-size: larger;
+        }
+
+    </style>
+</head>
+<body>
+    {% include 'tasks/navbar.html' %}
+    {% block heading %} {% endblock %}
+    {% block form %}
+        <form action="" method="POST" id="myForm"> {% csrf_token %}
+            <!-- <span class="titlelbl">{{form.title.label}}</span> -->
+            {{form.title}}
+            {%block complete%}{%endblock%}
+            <input type="submit" name="submitButton" id="btn" value={% block valueTitle %}"Add"{% endblock %}>
+        </form>
+    {%endblock%}
+    {% block outer %}
+    <!-- <div class="outer"> -->
+            <ul style="list-style-type: none;">
+                {%for task in tasks%}  <!-- for python codes in html use like this -->
+                <li>
+                    {%if task.complete is True%}
+                        <p><strike>{{task}}</strike></p> <!-- for printing purpose use like this (it simply calls __str__ in class of Model Task) -->
+                    {%else%}  
+                        <p>{{task}}</p>
+                    {%endif%}
+                    <a href="{% url 'delete' task.id %}">Delete</a>
+                    <a href="{% url 'update' task.id %}">Update</a>
+                </li>
+            {%endfor%}
+            </ul>
+    <!-- </div> -->
+    {% endblock %}
+</body>
+</html>

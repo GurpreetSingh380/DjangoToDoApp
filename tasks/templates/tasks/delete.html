@@ -1,0 +1,60 @@
+{% extends 'tasks/index.html' %}
+{% block title %}Delete{%endblock%}
+{%block heading%}
+    <style>
+        body{
+            background-color: hwb(39 2% 13% / 0.616);
+        }
+        h1{
+            background-color: #926428;
+            color: #ebd1d1;
+            font-size: x-large;
+            font-weight:lighter;
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            height: 40px;
+            width: 50%;
+            margin: auto;
+            margin-top: 30px;
+            padding: 10px;
+            padding-top: 15px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        #mf{
+            background-color:hwb(54 2% 41%);
+            display: flex;
+            justify-content: center;
+            border: groove white;
+        }
+        a{
+            text-decoration: none;
+            color: #fcf8f8;
+            font-size: large;
+            height: 30px;
+            width: 30px;
+            background-color: #252419;
+            border-radius: 3px;
+            padding: 3px;
+        }
+        #no{
+            background-color: hwb(54 2% 41%);
+            width: 420px;
+            height: 40px;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            padding: 7px;
+            border-radius: 30px;
+            margin-top: 14px;
+            border: groove white;
+        }
+    </style>
+    <h1>Are you sure you want delete Task - {{obj.title}} ?!</h1>
+    <form action="" method="POST" id="mf">
+        {% csrf_token %}
+        <input type="submit" value="Yes">
+    </form>
+    <div id="no"><a href="{% url 'main' %}">No</a></div>
+{%endblock%}
+{% block form %} {%endblock%}
+{% block outer %} {%endblock%}
